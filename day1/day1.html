@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Advent of Code 2023 Day 1 Part 1</title>
+    <script>
+        document.addEventListener('submit', (e) => {
+        const f = document.forms.main;
+        e.preventDefault();
+        
+        f.output.value = sumLines(f.numbers.value);
+        
+        return false;
+        });
+
+        function getDigit(c) {
+        return Math.max(0, '0123456789'.indexOf(c));
+        }
+
+        function sumLines(t) {
+        const lines = t.split(/\n/);
+        
+        return lines.reduce((a, line) => {
+            line = line.replace(/[^0-9]/g, '');
+
+            return a + getDigit(line[0]) * 10 + getDigit(line[line.length-1]);
+        }, 0);
+        }        
+    </script>
+  </head>
+  <body>
+    <form name="main">
+        <p>
+          <label>input</label>
+          <textarea name="numbers">1abc2
+      pqr3stu8vwx
+      a1b2c3d4e5f
+      treb7uchet</textarea>
+        </p>
+        <p><input type="submit" value="sum!"/></p>
+        <p><label>result: </label><output name="output"></output></p>
+      </form>
+  </body>
+</html>
